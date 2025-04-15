@@ -6,7 +6,7 @@
 /*   By: rlebaill <rlebaill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:41:24 by rlebaill          #+#    #+#             */
-/*   Updated: 2024/11/29 12:37:38 by rlebaill         ###   ########.fr       */
+/*   Updated: 2025/04/15 18:49:15 by rlebaill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,21 +116,29 @@ t_game	create_game(char **argv)
 	fd = open(argv[1], O_RDONLY);
 	game.str = fill_map(fd);
 	if (!game.str)
+	{
+		close(fd);
 		exit (1);
+	}
 	if (check_map(game))
 	{
 		write(2, "Error\nmap error\n", 16);
 		free(game.str);
+		close(fd);
 		exit (1);
 	}
 	game.init = mlx_init();
 	if (!game.init)
+	{
+		free(game.str);
+		close(fd);
 		exit (1);
+	}
 	game.count = 0;
 	game.map = create_map(game);
 	game.coq = create_coq(game);
 	game.chicken = create_chicken(game);
 	game.worms = create_worms(&game);
 	game.foxes = create_foxes(&game);
-	return (game);
+	return (close(fd), game);
 }

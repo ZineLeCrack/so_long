@@ -6,7 +6,7 @@
 /*   By: rlebaill <rlebaill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 18:31:28 by rlebaill          #+#    #+#             */
-/*   Updated: 2024/12/02 09:40:21 by rlebaill         ###   ########.fr       */
+/*   Updated: 2025/04/15 18:52:28 by rlebaill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	is_exit_or_collectible(t_game *game, char **map)
 
 	x = 0;
 	y = 0;
-	while (y < game->map.y)
+	while (map[y])
 	{
 		x = 0;
 		while (x < game->map.x)
