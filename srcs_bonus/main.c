@@ -6,7 +6,7 @@
 /*   By: rlebaill <rlebaill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 18:33:43 by rlebaill          #+#    #+#             */
-/*   Updated: 2025/04/15 18:47:16 by rlebaill         ###   ########.fr       */
+/*   Updated: 2025/04/16 09:13:52 by rlebaill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,14 @@ static int	loop(t_game *game)
 int	main(int argc, char **argv)
 {
 	t_game	game;
+	int		len;
 
 	if (argc == 2)
 	{
+		len = ft_strlen(argv[1]);
+		if (len < 4 || argv[1][len - 1] != 'r' || argv[1][len - 2] != 'e'
+			|| argv[1][len - 3] != 'b' || argv[1][len - 4] != '.')
+			return (ft_putstr_fd("Error\nextension error\n", 2), 1);
 		game = create_game(argv);
 		game.window = mlx_new_window(game.init, game.map.x * 48,
 				game.map.y * 48, "so_long");
